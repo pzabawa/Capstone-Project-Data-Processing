@@ -59,7 +59,7 @@ echo "Script completed without errors.\n";
 
 function getNeighborhoodFromGoogle($address)
 {
-	$url = "http://maps.googleapis.com/maps/api/geocode/json?&address=" . urlencode(trim($address) . "Philadelphia PA");
+	$url = "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyDepye_kPyix97bgRtiI8weT_D7mcXMNt0&address=" . urlencode(trim($address) . "Philadelphia PA");
 	$json = file_get_contents($url);
 	$obj = json_decode($json);
 
@@ -76,5 +76,5 @@ function getNeighborhoodFromGoogle($address)
 		}
 	}
 
-	return $neighborhood ? array($neighborhood, $city) : array();
+	return ($neighborhood && $city) ? array($neighborhood, $city) : array();
 }
